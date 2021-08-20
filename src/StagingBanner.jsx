@@ -1,12 +1,13 @@
 import React from 'react';
 import { Portal } from 'react-portal';
-import './stagingBanner.css';
+import './less/stagingBanner.less';
+import config from '@plone/volto/registry';
 
 const StagingBanner = () => {
   let [isDev, setIsDev] = React.useState(false);
 
   React.useEffect(() => {
-    const demoIdentifiers = ['dev', 'demo', 'staging', 'localhost'];
+    const demoIdentifiers = config.settings.stagingBanner.demoIdentifiers;
     const path = window.location.host;
     if (
       path !== undefined &&
@@ -19,9 +20,16 @@ const StagingBanner = () => {
     }
   }, []);
 
-  if (isDev) {
+  let node;
+  if (typeof window !== 'undefined') {
+    node = document.querySelector(
+      config.settings.stagingBanner.parentNodeSelector,
+    );
+  }
+
+  if (node && isDev) {
     return (
-      <Portal node={document.getElementsByClassName('skiplinks-wrapper')[0]}>
+      <Portal node={node}>
         <div>
           <div className="stagingBanner">
             <p>

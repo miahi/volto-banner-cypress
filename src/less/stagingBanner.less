@@ -1,0 +1,23 @@
+@import 'globals.less';
+
+@addon: 'theme';
+@addontype: 'stagingbanner';
+@addonelement: 'banner';
+
+.loadAddonVariables();
+
+.stagingBanner {
+  .p {
+    color: @textColor;
+  }
+}
+
+.skiplinks-wrapper when (@overrideSkipLinks = true) {
+  position: relative !important;
+  top: 0 !important;
+
+  a.skiplink {
+    position: absolute !important;
+    top: -100% !important;
+  }
+}
