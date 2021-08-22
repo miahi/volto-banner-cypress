@@ -20,7 +20,7 @@ const StagingBanner = () => {
     ) {
       setIsDev(true);
     }
-  }, []);
+  }, [stagingBannerConfig.demoIdentifiers]);
 
   let node;
   if (typeof window !== 'undefined') {
