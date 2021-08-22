@@ -6,6 +6,7 @@ const applyConfig = (config) => {
   config.settings.stagingBanner = {
     demoIdentifiers: ['dev', 'demo', 'staging', 'localhost'],
     parentNodeSelector: '.skiplinks-wrapper',
+    extraClasses: ['ui icon warning message'],
   };
 
   config.settings.appExtras = [
