@@ -7,7 +7,9 @@
 
 ## Features
 
-Demo GIF
+A customizable banner to highlight to the user that the website is in demo, dev or staging state. It is configurable through the `settings.stagingBanner.demoIdentifiers` (list of identifiers such as e.g. 'demo', 'dev', discoverable from url), the position (`settings.stagingBanner.parentNodeSelector`) and through style (`settings.stagingBanner.classes`).
+
+![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
 
 ## Getting started
 
