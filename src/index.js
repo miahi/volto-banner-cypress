@@ -7,7 +7,7 @@ const applyConfig = (config) => {
   config.settings.stagingBanner = {
     demoIdentifiers: ['dev', 'demo', 'staging', 'localhost'],
     parentNodeSelector: '.skiplinks-wrapper',
-    extraClasses: ['ui icon warning message'],
+    extraClasses: ['ui warning message'],
     envApiUrl: 'RAZZLE_API_PATH',
     ...(config.settings.stagingBanner || {}),
   };
