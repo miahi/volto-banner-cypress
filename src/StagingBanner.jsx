@@ -6,30 +6,17 @@ import cx from 'classnames';
 
 const StagingBanner = () => {
   const stagingBannerConfig = config.settings.stagingBanner;
-  let [isDev, setIsDev] = React.useState(false);
 
+  const node = React.useRef();
   React.useEffect(() => {
-    const demoIdentifiers = stagingBannerConfig.demoIdentifiers;
-    const path = window.location.host;
-    if (
-      path !== undefined &&
-      demoIdentifiers.reduce(
-        (acc, identifier) => acc || path.includes(identifier),
-        false,
-      )
-    ) {
-      setIsDev(true);
-    }
-  }, [stagingBannerConfig.demoIdentifiers]);
+    node.current = document.querySelector(
+      stagingBannerConfig.parentNodeSelector,
+    );
+  }, [stagingBannerConfig.parentNodeSelector]);
 
-  let node;
-  if (typeof window !== 'undefined') {
-    node = document.querySelector(stagingBannerConfig.parentNodeSelector);
-  }
-
-  if (node && isDev) {
+  if (node.current) {
     return (
-      <Portal node={node}>
+      <Portal node={node.current}>
         <div className={cx('stagingBanner', stagingBannerConfig.extraClasses)}>
           <i aria-hidden="true" className="exclamation circle icon"></i>
           <div className="content">

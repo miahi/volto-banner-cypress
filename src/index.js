@@ -1,4 +1,5 @@
-import StagingBanner from './StagingBanner';
+import loadable from '@loadable/component';
+import { runtimeConfig } from '@plone/volto/runtime_config';
 
 const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
@@ -7,15 +8,30 @@ const applyConfig = (config) => {
     demoIdentifiers: ['dev', 'demo', 'staging', 'localhost'],
     parentNodeSelector: '.skiplinks-wrapper',
     extraClasses: ['ui icon warning message'],
+    envApiUrl: 'RAZZLE_API_PATH',
+    ...(config.settings.stagingBanner || {}),
   };
 
-  config.settings.appExtras = [
-    ...appExtras,
-    {
-      match: '',
-      component: StagingBanner,
-    },
-  ];
+  const demoIdentifiers = config.settings.stagingBanner.demoIdentifiers;
+  const path = runtimeConfig[config.settings.stagingBanner.envApiUrl];
+  const isDev =
+    path &&
+    demoIdentifiers.reduce(
+      (acc, identifier) => acc || path.includes(identifier),
+      false,
+    );
+
+  if (isDev) {
+    const StagingBanner = loadable(() => import('./StagingBanner'));
+    config.settings.appExtras = [
+      ...appExtras,
+
+      {
+        match: '',
+        component: StagingBanner,
+      },
+    ];
+  }
 
   return config;
 };
