@@ -7,16 +7,14 @@ import cx from 'classnames';
 const StagingBanner = () => {
   const stagingBannerConfig = config.settings.stagingBanner;
 
-  const node = React.useRef();
+  const [node, setNode] = React.useState('');
   React.useEffect(() => {
-    node.current = document.querySelector(
-      stagingBannerConfig.parentNodeSelector,
-    );
+    setNode(document.querySelector(stagingBannerConfig.parentNodeSelector));
   }, [stagingBannerConfig.parentNodeSelector]);
 
-  if (node.current) {
+  if (node) {
     return (
-      <Portal node={node.current}>
+      <Portal node={node}>
         <div className={cx('stagingBanner', stagingBannerConfig.extraClasses)}>
           <div
             className={cx('container icon', stagingBannerConfig.extraClasses)}
