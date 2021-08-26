@@ -5,7 +5,8 @@ const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
 
   config.settings.stagingBanner = {
-    demoIdentifiers: ['true'], // alternative in other addons ['dev', 'staging']
+    // alternative in other addons ['dev', 'staging']
+    demoIdentifiers: ['True', 'true', 'Yes', 'yes', 'On', 'on'],
     parentNodeSelector: '.skiplinks-wrapper',
     extraClasses: ['ui warning message'],
     envRuntimeVariable: 'RAZZLE_DEMO_SITE', //'apiPath' for match from host path
