@@ -17,9 +17,24 @@ the value of `RAZZLE_DEMO_SITE` environment variable), the parent element
 where to add the banner (`settings.stagingBanner.parentNodeSelector`) and through
 the addition of extra css classes (`settings.stagingBanner.classes`).
 
+### Enabled by default
+
+If you add this addon to `package.json` `addons` sections by default it will be
+enabled and banner will show up on the site.
+
+To disable it start your volto instance as such:
+```
+    RAZZLE_DEMO_SITE=false yarn start
+```
+as by default we either check if `RAZZLE_DEMO_SITE` is not found or if it's set
+to any of the values from `settings.StagingBanner.demoIdentifiers`.
+
+This environment variable can also be set from Rancher templates so that you
+don't need to manually add or remove it.
+
 Have a look at the configuration options in `src/index.js` as you can override
 the settings to use other environment variables and demo identifiers if needed
-in order to display the banner.
+in order to display the banner in other conditions.
 
 ![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
 
@@ -73,16 +88,16 @@ in order to display the banner.
    cd my-volto-project
    ```
 
-1. Install new add-ons and start Volto passing the required environment variable:
+1. Install new add-ons and start Volto:
 
    ```
    yarn
-   RAZZLE_DEMO_SITE=true yarn start
+   yarn start
    ```
 
-1. Go to http://localhost:3000
+3. Go to http://localhost:3000
 
-1. Happy editing!
+4. Banner with demo message will appear by default before the header section.
 
 ## How to contribute
 

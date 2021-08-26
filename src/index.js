@@ -5,7 +5,8 @@ const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
 
   config.settings.stagingBanner = {
-    demoIdentifiers: ['true'], // alternative in other addons ['dev', 'staging']
+    // alternative in other addons ['dev', 'staging']
+    demoIdentifiers: ['True', 'true', 'Yes', 'yes', 'On', 'on'],
     parentNodeSelector: '.skiplinks-wrapper',
     extraClasses: ['ui warning message'],
     envRuntimeVariable: 'RAZZLE_DEMO_SITE', //'apiPath' for match from host path
@@ -16,11 +17,12 @@ const applyConfig = (config) => {
   const env_var =
     runtimeConfig[config.settings.stagingBanner.envRuntimeVariable];
   const isDev =
-    env_var &&
-    demoIdentifiers.reduce(
-      (acc, identifier) => acc || env_var.includes(identifier),
-      false,
-    );
+    !env_var ||
+    (env_var &&
+      demoIdentifiers.reduce(
+        (acc, identifier) => acc || env_var.includes(identifier),
+        false,
+      ));
 
   if (isDev) {
     const StagingBanner = loadable(() => import('./StagingBanner'));
