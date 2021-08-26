@@ -73,16 +73,16 @@ in order to display the banner.
    cd my-volto-project
    ```
 
-1. Install new add-ons and start Volto passing the required environment variable:
+1. Install new add-ons and start Volto passing the required environment variable `RAZZLE_DEMO_SITE` set to `true`:
 
    ```
    yarn
    RAZZLE_DEMO_SITE=true yarn start
    ```
 
-1. Go to http://localhost:3000
+3. Go to http://localhost:3000
 
-1. Happy editing!
+4. Banner with demo message will appear by default before the header section.
 
 ## How to contribute
 

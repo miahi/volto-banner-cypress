@@ -40,9 +40,9 @@ Before starting make sure your development environment is properly set. See [Vol
 
     ...you can also check http://localhost:8080/Plone
 
-1.  Start frontend
+1.  Start frontend with `RAZZLE_DEMO_SITE` environment variable set to `true`
 
-        yarn start
+        RAZZLE_DEMO_SITE=true yarn start
 
 1.  Go to http://localhost:3000
 
