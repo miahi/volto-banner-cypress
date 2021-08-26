@@ -5,19 +5,20 @@ const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
 
   config.settings.stagingBanner = {
-    demoIdentifiers: ['dev', 'demo', 'staging', 'localhost'],
+    demoIdentifiers: ['true'], // alternative in other addons ['dev', 'staging']
     parentNodeSelector: '.skiplinks-wrapper',
     extraClasses: ['ui warning message'],
-    envApiUrl: 'apiPath',
+    envRuntimeVariable: 'RAZZLE_DEMO_SITE', //'apiPath' for match from host path
     ...(config.settings.stagingBanner || {}),
   };
 
   const demoIdentifiers = config.settings.stagingBanner.demoIdentifiers;
-  const path = runtimeConfig[config.settings.stagingBanner.envApiUrl];
+  const env_var =
+    runtimeConfig[config.settings.stagingBanner.envRuntimeVariable];
   const isDev =
-    path &&
+    env_var &&
     demoIdentifiers.reduce(
-      (acc, identifier) => acc || path.includes(identifier),
+      (acc, identifier) => acc || env_var.includes(identifier),
       false,
     );
 

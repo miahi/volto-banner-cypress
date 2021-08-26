@@ -7,7 +7,19 @@
 
 ## Features
 
-A customizable banner to highlight to the user that the website is in demo, dev or staging state. It is configurable through the `settings.stagingBanner.demoIdentifiers` (list of identifiers such as e.g. 'demo', 'dev', discoverable from url), the position (`settings.stagingBanner.parentNodeSelector`) and through style (`settings.stagingBanner.classes`).
+A customizable banner to highlight to the user that the website is in demo, dev
+or staging state. 
+
+It is configurable through the `settings.stagingBanner.demoIdentifiers` 
+(list of identifiers such as e.g. `true`, `dev`, `demo` discoverable from reading
+the value of `settings.stagingBanner.envRuntimeVariable` which by default reads
+the value of `RAZZLE_DEMO_SITE` environment variable), the parent element
+where to add the banner (`settings.stagingBanner.parentNodeSelector`) and through
+the addition of extra css classes (`settings.stagingBanner.classes`).
+
+Have a look at the configuration options in `src/index.js` as you can override
+the settings to use other environment variables and demo identifiers if needed
+in order to display the banner.
 
 ![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
 
@@ -61,11 +73,11 @@ A customizable banner to highlight to the user that the website is in demo, dev 
    cd my-volto-project
    ```
 
-1. Install new add-ons and restart Volto:
+1. Install new add-ons and start Volto passing the required environment variable:
 
    ```
    yarn
-   yarn start
+   RAZZLE_DEMO_SITE=true yarn start
    ```
 
 1. Go to http://localhost:3000
