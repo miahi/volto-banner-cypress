@@ -16,11 +16,12 @@ const applyConfig = (config) => {
   const env_var =
     runtimeConfig[config.settings.stagingBanner.envRuntimeVariable];
   const isDev =
-    env_var &&
-    demoIdentifiers.reduce(
-      (acc, identifier) => acc || env_var.includes(identifier),
-      false,
-    );
+    !env_var ||
+    (env_var &&
+      demoIdentifiers.reduce(
+        (acc, identifier) => acc || env_var.includes(identifier),
+        false,
+      ));
 
   if (isDev) {
     const StagingBanner = loadable(() => import('./StagingBanner'));
