@@ -24,12 +24,10 @@ enabled and banner will show up on the site.
 
 To disable it start your volto instance as such:
 ```
-    yarn start
-    or 
     RAZZLE_DEMO_SITE=false yarn start
 ```
 as by default we either check if `RAZZLE_DEMO_SITE` is not found or if it's set
-to `true`.
+to any of the values from `settings.StagingBanner.demoIdentifiers`.
 
 This environment variable can also be set from Rancher templates so that you
 don't need to manually add or remove it.
