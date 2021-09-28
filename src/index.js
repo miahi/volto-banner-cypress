@@ -9,7 +9,9 @@ const applyConfig = (config) => {
     demoIdentifiers: ['True', 'true', 'Yes', 'yes', 'On', 'on'],
     parentNodeSelector: '.skiplinks-wrapper',
     extraClasses: ['ui warning message'],
-    envRuntimeVariable: 'RAZZLE_DEMO_SITE', //'apiPath' for match from host path
+    envRuntimeVariable: 'RAZZLE_DEMO_SITE',
+    envBannerHeader: 'RAZZLE_BANNER_HEADER',
+    envBannerMessage: 'RAZZLE_BANNER_MESSAGE', //'apiPath' for match from host path
     ...(config.settings.stagingBanner || {}),
   };
 
