@@ -18,7 +18,7 @@ the value of `RAZZLE_DEMO_SITE` environment variable), the parent element
 where to add the banner (`settings.stagingBanner.parentNodeSelector`) and through
 the addition of extra css classes (`settings.stagingBanner.classes`).
 
-if you want to customize banner header and content, you can use `RAZZLE_BANNER_HEADER` and `RAZZLE_BANNER_MESSAGE` env vars respectively.
+If you want to customize the banner header and content, you can use `RAZZLE_BANNER_HEADER` and `RAZZLE_BANNER_MESSAGE` env vars, respectively.
 
 ### Enabled by default
 

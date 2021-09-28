@@ -8,10 +8,8 @@ import { Icon } from '@plone/volto/components';
 
 const StagingBanner = () => {
   const stagingBannerConfig = config.settings.stagingBanner;
-  const bannerHeader =
-    runtimeConfig[config.settings.stagingBanner.envBannerHeader];
-  const bannerMessage =
-    runtimeConfig[config.settings.stagingBanner.envBannerMessage];
+  const bannerHeader = runtimeConfig[stagingBannerConfig.envBannerHeader];
+  const bannerMessage = runtimeConfig[stagingBannerConfig.envBannerMessage];
 
   const [node, setNode] = React.useState('');
   React.useEffect(() => {
