@@ -3,9 +3,15 @@ import { Portal } from 'react-portal';
 import './less/stagingBanner.less';
 import config from '@plone/volto/registry';
 import cx from 'classnames';
+import { runtimeConfig } from '@plone/volto/runtime_config';
+import { Icon } from '@plone/volto/components';
 
 const StagingBanner = () => {
   const stagingBannerConfig = config.settings.stagingBanner;
+  const bannerHeader =
+    runtimeConfig[config.settings.stagingBanner.envBannerHeader];
+  const bannerMessage =
+    runtimeConfig[config.settings.stagingBanner.envBannerMessage];
 
   const [node, setNode] = React.useState('');
   React.useEffect(() => {
@@ -19,12 +25,19 @@ const StagingBanner = () => {
           <div
             className={cx('container icon', stagingBannerConfig.extraClasses)}
           >
-            <i aria-hidden="true" className="exclamation circle icon"></i>
+            {stagingBannerConfig.bannerIcon ? (
+              <Icon name={stagingBannerConfig.bannerIcon} size="24px" />
+            ) : (
+              <i aria-hidden="true" className="exclamation circle icon"></i>
+            )}
+
             <div className="content">
-              <div className="header">This is a demo/test instance.</div>
+              <div className="header">
+                {bannerHeader || 'This is a demo/test instance'}
+              </div>
               <p>
-                Do not use it for operational purposes. All changes will be
-                regularly overwritten.
+                {bannerMessage ||
+                  'Do not use it for operational purposes. All changes will be regularly overwritten'}
               </p>
             </div>
           </div>
