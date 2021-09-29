@@ -33,10 +33,13 @@ const StagingBanner = () => {
               <div className="header">
                 {bannerHeader || 'This is a demo/test instance'}
               </div>
-              <p>
-                {bannerMessage ||
-                  'Do not use it for operational purposes. All changes will be regularly overwritten'}
-              </p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    bannerMessage ||
+                    'Do not use it for operational purposes. All changes will be regularly overwritten',
+                }}
+              />
             </div>
           </div>
         </div>
