@@ -1,8 +1,8 @@
-# volto-staging-banner
+# volto-banner
 
-[![Releases](https://img.shields.io/github/v/release/eea/volto-staging-banner)](https://github.com/eea/volto-staging-banner/releases)
-[![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-staging-banner%2Fmaster&subject=master)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-staging-banner/job/master/display/redirect)
-[![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-staging-banner%2Fdevelop&subject=develop)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-staging-banner/job/develop/display/redirect)
+[![Releases](https://img.shields.io/github/v/release/eea/volto-banner)](https://github.com/eea/volto-banner/releases)
+[![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-banner%2Fmaster&subject=master)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-banner/job/master/display/redirect)
+[![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-banner%2Fdevelop&subject=develop)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-banner/job/develop/display/redirect)
 
 [Volto](https://github.com/plone/volto) add-on
 
@@ -45,7 +45,7 @@ in order to display the banner in other conditions.
 
 ## Getting started
 
-### Try volto-staging-banner with Docker
+### Try volto-banner with Docker
 
 1. Get the latest Docker images
 
@@ -63,12 +63,12 @@ in order to display the banner in other conditions.
 1. Start Volto frontend
 
    ```
-   docker run -it --rm -p 3000:3000 --link plone -e ADDONS="@eeacms/volto-staging-banner" plone/volto
+   docker run -it --rm -p 3000:3000 --link plone -e ADDONS="@eeacms/volto-banner" plone/volto
    ```
 
 1. Go to http://localhost:3000
 
-### Add volto-staging-banner to your Volto project
+### Add volto-banner to your Volto project
 
 1. Make sure you have a [Plone backend](https://plone.org/download) up-and-running at http://localhost:8080/Plone
 
@@ -78,11 +78,11 @@ in order to display the banner in other conditions.
 
   ```JSON
   "addons": [
-      "@eeacms/volto-staging-banner"
+      "@eeacms/volto-banner"
   ],
 
   "dependencies": {
-      "@eeacms/volto-staging-banner": "^1.0.0"
+      "@eeacms/volto-banner": "^1.0.0"
   }
   ```
 
@@ -90,7 +90,7 @@ in order to display the banner in other conditions.
 
   ```
   npm install -g yo @plone/generator-volto
-  yo @plone/volto my-volto-project --addon @eeacms/volto-staging-banner
+  yo @plone/volto my-volto-project --addon @eeacms/volto-banner
   cd my-volto-project
   ```
 
@@ -107,14 +107,14 @@ in order to display the banner in other conditions.
 
 ## How to contribute
 
-See [DEVELOP.md](https://github.com/eea/volto-staging-banner/blob/master/DEVELOP.md).
+See [DEVELOP.md](https://github.com/eea/volto-banner/blob/master/DEVELOP.md).
 
 ## Copyright and license
 
 The Initial Owner of the Original Code is European Environment Agency (EEA).
 All Rights Reserved.
 
-See [LICENSE.md](https://github.com/eea/volto-staging-banner/blob/master/LICENSE.md) for details.
+See [LICENSE.md](https://github.com/eea/volto-banner/blob/master/LICENSE.md) for details.
 
 ## Funding
 
