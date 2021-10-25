@@ -1,3 +1,2 @@
-@textColor: #FFF;
+@bannerTextColor: @textColor;
 @overrideSkipLinks: true;
-@padding: 1em 1.5em;

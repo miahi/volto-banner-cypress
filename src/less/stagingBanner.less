@@ -7,15 +7,11 @@
 .loadAddonVariables();
 
 .stagingBanner {
-  .p {
-    color: @textColor;
+  p {
+    color: @bannerTextColor;
   }
   padding: 0 !important;
   margin-top: 0 !important;
-
-  .ui.container {
-    padding: @padding !important;
-  }
 }
 
 .skiplinks-wrapper when (@overrideSkipLinks = true) {
