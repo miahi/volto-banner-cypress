@@ -5,6 +5,7 @@ import config from '@plone/volto/registry';
 import cx from 'classnames';
 import { runtimeConfig } from '@plone/volto/runtime_config';
 import { Icon } from '@plone/volto/components';
+import { BodyClass } from '@plone/volto/helpers';
 
 const StagingBanner = () => {
   const stagingBannerConfig = config.settings.stagingBanner;
@@ -19,6 +20,7 @@ const StagingBanner = () => {
   if (node) {
     return (
       <Portal node={node}>
+        <BodyClass className="has-banner" />
         <div className={cx('stagingBanner', stagingBannerConfig.extraClasses)}>
           <div
             className={cx('container icon', stagingBannerConfig.extraClasses)}
