@@ -7,21 +7,11 @@
 .loadAddonVariables();
 
 .stagingBanner {
-  .p {
-    color: @textColor;
+  p {
+    color: @bannerTextColor;
   }
   padding: 0 !important;
   margin-top: 0 !important;
-}
-
-@media only screen and (max-width: 1400px) and (min-width: 768px) {
-  body:not(.has-toolbar):not(.has-sidebar):not(.has-toolbar-collapsed):not(.has-sidebar-collapsed)
-    .ui.container,
-  body.has-toolbar:not(.has-sidebar):not(.has-sidebar-collapsed)
-    .stagingBanner
-    .ui.container {
-    padding: 1.5em 1.5em !important;
-  }
 }
 
 .skiplinks-wrapper when (@overrideSkipLinks = true) {
