@@ -5,7 +5,7 @@ describe('Blocks Tests', () => {
   afterEach(tearDownAfterEach);
 
   it('Add Block: Empty', () => {
-    // without this the clear command below does nothing
+    // without this the clear command below does nothing sometimes
     cy.wait(500);
 
     // Change page title
