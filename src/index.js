@@ -1,17 +1,18 @@
 import loadable from '@loadable/component';
 import { runtimeConfig } from '@plone/volto/runtime_config';
+import * as addonReducers from './reducers';
+
+import infoSVG from '@plone/volto/icons/info.svg';
 
 const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
 
   config.settings.stagingBanner = {
-    // alternative in other addons ['dev', 'staging']
     demoIdentifiers: ['True', 'true', 'Yes', 'yes', 'On', 'on'],
     parentNodeSelector: '.skiplinks-wrapper',
-    extraClasses: ['ui warning message'],
     envRuntimeVariable: 'RAZZLE_DEMO_SITE',
-    envBannerHeader: 'RAZZLE_BANNER_HEADER',
-    envBannerMessage: 'RAZZLE_BANNER_MESSAGE', //'apiPath' for match from host path
+    bannerIcon: infoSVG,
+    bannerIconColor: 'black',
     ...(config.settings.stagingBanner || {}),
   };
 
@@ -37,6 +38,11 @@ const applyConfig = (config) => {
       },
     ];
   }
+
+  config.addonReducers = {
+    ...config.addonReducers,
+    ...addonReducers,
+  };
 
   return config;
 };

@@ -7,10 +7,21 @@
 .loadAddonVariables();
 
 .stagingBanner {
-  p {
-    color: @bannerTextColor;
+  > .ui.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon {
+      margin-left: 1rem;
+    }
   }
-  padding: 0 !important;
+
+  p,
+  li {
+    color: @bannerTextColor;
+    opacity: @bannerTextOpacity;
+  }
   margin-top: 0 !important;
 }
 
