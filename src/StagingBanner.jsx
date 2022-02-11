@@ -40,7 +40,7 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
     setNode(document.querySelector(bannerConfig.parentNodeSelector));
   }, [bannerConfig.parentNodeSelector]);
 
-  if (!banneractive) return '';
+  if (!banneractive || !banner.loaded) return '';
   if (
     (!visibleToAll && !token && pathname !== '/login') ||
     (!visibleToAll && !visibleOnLogin && !token && pathname === '/login')
@@ -55,8 +55,9 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
           <Container>
             <Message.Content>
               <Message.Header>{bannerTitle}</Message.Header>
-              {bannerMessage.map((message) => (
+              {bannerMessage.map((message, index) => (
                 <p
+                  key={`banner-message-${index}`}
                   dangerouslySetInnerHTML={{
                     __html: message,
                   }}
