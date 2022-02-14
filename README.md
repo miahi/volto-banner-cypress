@@ -21,35 +21,9 @@
 A customizable banner to highlight to the user that the website is in demo, dev
 or staging state.
 
-It is configurable through the `settings.stagingBanner.demoIdentifiers`
-(list of identifiers such as e.g. `true`, `dev`, `demo` discoverable from reading
-the value of `settings.stagingBanner.envRuntimeVariable` which by default reads
-the value of `RAZZLE_DEMO_SITE` environment variable), the parent element
-where to add the banner (`settings.stagingBanner.parentNodeSelector`) and through
-the addition of extra css classes (`settings.stagingBanner.classes`).
+It requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed.
 
-If you want to customize the banner header and content, you can use `RAZZLE_BANNER_HEADER` and `RAZZLE_BANNER_MESSAGE` env vars, respectively.
-
-### Enabled by default
-
-If you add this addon to `package.json` `addons` sections by default it will be
-enabled and banner will show up on the site.
-
-To disable it start your volto instance as such:
-
-```
-    RAZZLE_DEMO_SITE=false yarn start
-```
-
-as by default we either check if `RAZZLE_DEMO_SITE` is not found or if it's set
-to any of the values from `settings.StagingBanner.demoIdentifiers`.
-
-This environment variable can also be set from Rancher templates so that you
-don't need to manually add or remove it.
-
-Have a look at the configuration options in `src/index.js` as you can override
-the settings to use other environment variables and demo identifiers if needed
-in order to display the banner in other conditions.
+It is configurable through `/controlpanel/banner`.
 
 ![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
 
@@ -92,7 +66,7 @@ in order to display the banner in other conditions.
   ],
 
   "dependencies": {
-      "@eeacms/volto-banner": "^1.0.0"
+      "@eeacms/volto-banner": "^2.0.0"
   }
   ```
 
