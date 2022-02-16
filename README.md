@@ -21,7 +21,7 @@
 A customizable banner to highlight to the user that the website is in demo, dev
 or staging state.
 
-It requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed.
+**Note** Version 2.x.x requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed on backend.
 
 It is configurable through `/controlpanel/banner`.
 
@@ -29,7 +29,7 @@ It is configurable through `/controlpanel/banner`.
 
 ## Getting started
 
-### Try volto-banner with Docker
+### Start Plone backend with Docker
 
 1. Get the latest Docker images
 
@@ -41,20 +41,12 @@ It is configurable through `/controlpanel/banner`.
 1. Start Plone backend
 
    ```
-   docker run -d --name plone -p 8080:8080 -e SITE=Plone -e PROFILES="profile-plone.restapi:blocks" plone
-   ```
-
-1. Start Volto frontend
-
-   ```
-   docker run -it --rm -p 3000:3000 --link plone -e ADDONS="@eeacms/volto-banner" plone/volto
+   docker run -it --rm -p 8080:8080 -e SITE=Plone -e ADDONS="eea.banner" -e PROFILES="profile-eea.banner:default" plone
    ```
 
 1. Go to http://localhost:3000
 
 ### Add volto-banner to your Volto project
-
-1. Make sure you have a [Plone backend](https://plone.org/download) up-and-running at http://localhost:8080/Plone
 
 1. Start Volto frontend
 
@@ -86,8 +78,8 @@ It is configurable through `/controlpanel/banner`.
    ```
 
 2. Go to http://localhost:3000
-
-3. Banner with demo message will appear by default before the header section.
+3. Login `admin:admin`
+4. Go to `Site Setup > Banner settings` and configure your banner
 
 ## Release
 
