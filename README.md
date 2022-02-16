@@ -21,11 +21,15 @@
 A customizable banner to highlight to the user that the website is in demo, dev
 or staging state.
 
-**Note** Version 2.x.x requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed on backend.
-
 It is configurable through `/controlpanel/banner`.
 
 ![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
+
+## Upgrades
+
+### Upgrade to 2.x.x
+
+* Version `2.x.x` requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed on backend.
 
 ## Getting started
 
