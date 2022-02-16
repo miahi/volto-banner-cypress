@@ -21,41 +21,19 @@
 A customizable banner to highlight to the user that the website is in demo, dev
 or staging state.
 
-It is configurable through the `settings.stagingBanner.demoIdentifiers`
-(list of identifiers such as e.g. `true`, `dev`, `demo` discoverable from reading
-the value of `settings.stagingBanner.envRuntimeVariable` which by default reads
-the value of `RAZZLE_DEMO_SITE` environment variable), the parent element
-where to add the banner (`settings.stagingBanner.parentNodeSelector`) and through
-the addition of extra css classes (`settings.stagingBanner.classes`).
-
-If you want to customize the banner header and content, you can use `RAZZLE_BANNER_HEADER` and `RAZZLE_BANNER_MESSAGE` env vars, respectively.
-
-### Enabled by default
-
-If you add this addon to `package.json` `addons` sections by default it will be
-enabled and banner will show up on the site.
-
-To disable it start your volto instance as such:
-
-```
-    RAZZLE_DEMO_SITE=false yarn start
-```
-
-as by default we either check if `RAZZLE_DEMO_SITE` is not found or if it's set
-to any of the values from `settings.StagingBanner.demoIdentifiers`.
-
-This environment variable can also be set from Rancher templates so that you
-don't need to manually add or remove it.
-
-Have a look at the configuration options in `src/index.js` as you can override
-the settings to use other environment variables and demo identifiers if needed
-in order to display the banner in other conditions.
+It is configurable through `/controlpanel/banner`.
 
 ![image](https://user-images.githubusercontent.com/38378382/130647224-754af234-2de8-4d31-8eaa-6fa673df08a4.png)
 
+## Upgrades
+
+### Upgrade to 2.x.x
+
+* Version `2.x.x` requires [eea.banner](https://github.com/eea/eea.banner) Plone add-on to be installed on backend.
+
 ## Getting started
 
-### Try volto-banner with Docker
+### Start Plone backend with Docker
 
 1. Get the latest Docker images
 
@@ -67,20 +45,12 @@ in order to display the banner in other conditions.
 1. Start Plone backend
 
    ```
-   docker run -d --name plone -p 8080:8080 -e SITE=Plone -e PROFILES="profile-plone.restapi:blocks" plone
-   ```
-
-1. Start Volto frontend
-
-   ```
-   docker run -it --rm -p 3000:3000 --link plone -e ADDONS="@eeacms/volto-banner" plone/volto
+   docker run -it --rm -p 8080:8080 -e SITE=Plone -e ADDONS="eea.banner" -e PROFILES="profile-eea.banner:default" plone
    ```
 
 1. Go to http://localhost:3000
 
 ### Add volto-banner to your Volto project
-
-1. Make sure you have a [Plone backend](https://plone.org/download) up-and-running at http://localhost:8080/Plone
 
 1. Start Volto frontend
 
@@ -92,7 +62,7 @@ in order to display the banner in other conditions.
   ],
 
   "dependencies": {
-      "@eeacms/volto-banner": "^1.0.0"
+      "@eeacms/volto-banner": "^2.0.0"
   }
   ```
 
@@ -112,8 +82,8 @@ in order to display the banner in other conditions.
    ```
 
 2. Go to http://localhost:3000
-
-3. Banner with demo message will appear by default before the header section.
+3. Login `admin:admin`
+4. Go to `Site Setup > Banner settings` and configure your banner
 
 ## Release
 

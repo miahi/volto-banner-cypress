@@ -1,2 +1,3 @@
 @bannerTextColor: @textColor;
+@bannerTextOpacity: 0.85;
 @overrideSkipLinks: true;
