@@ -13,9 +13,11 @@ import './less/stagingBanner.less';
 
 const types = {
   upgrading: 'warning',
+  upgraded: 'warning',
   degraded: 'error',
   stopped: 'error',
   error: 'error',
+  inactive: 'error',
 };
 
 const bannerIsVisible = (token, enabled, visible_to_all) => {
