@@ -40,10 +40,14 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
   }, []);
 
   const [node, setNode] = React.useState(''),
-    [visible, setVisible] = React.useState(true),
-    hideBanner = React.useCallback(() => {
-      setVisible(false);
-    }, [setVisible]);
+    [staticBannerVisible, setStaticBannerVisible] = React.useState(true),
+    [dynamicBannerVisible, setDynamicBannerVisible] = React.useState(true),
+    hideStaticBanner = React.useCallback(() => {
+      setStaticBannerVisible(false);
+    }, [setStaticBannerVisible]),
+    hideDynamicBanner = React.useCallback(() => {
+      setDynamicBannerVisible(false);
+    }, [setDynamicBannerVisible]);
 
   React.useEffect(() => {
     setNode(document.querySelector(bannerConfig.parentNodeSelector));
@@ -56,46 +60,46 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
       <BodyClass className="has-banner" />
       {bannerIsVisible(
         token,
-        visible && staticBanner.enabled,
+        staticBannerVisible && staticBanner.enabled,
         staticBanner.visible_to_all,
       ) && (
-          <Message
-            className={cx('stagingBanner static-banner', staticBanner.type)}
-            icon
-          >
-            <Container>
-              <Message.Content>
-                <Message.Header>{staticBanner.title}</Message.Header>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: staticBanner.message,
-                  }}
+        <Message
+          className={cx('stagingBanner static-banner', staticBanner.type)}
+          icon
+        >
+          <Container>
+            <Message.Content>
+              <Message.Header>{staticBanner.title}</Message.Header>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: staticBanner.message,
+                }}
+              />
+            </Message.Content>
+            <div>
+              {bannerConfig.bannerIcon && (
+                <Icon
+                  name={bannerConfig.bannerIcon}
+                  color={bannerConfig.bannerIconColor || 'black'}
+                  size="32px"
                 />
-              </Message.Content>
-              <div>
-                {bannerConfig.bannerIcon && (
-                  <Icon
-                    name={bannerConfig.bannerIcon}
-                    color={bannerConfig.bannerIconColor || 'black'}
-                    size="32px"
-                  />
-                )}
-                {bannerConfig.bannerCloseIcon && (
-                  <Icon
-                    name={bannerConfig.bannerCloseIcon}
-                    color={bannerConfig.bannerCloseIconColor || 'black'}
-                    className="close-button"
-                    size="32px"
-                    onClick={hideBanner}
-                  />
-                )}
-              </div>
-            </Container>
-          </Message>
-        )}
+              )}
+              {bannerConfig.bannerCloseIcon && (
+                <Icon
+                  name={bannerConfig.bannerCloseIcon}
+                  color={bannerConfig.bannerCloseIconColor || 'black'}
+                  className="close-button"
+                  size="32px"
+                  onClick={hideStaticBanner}
+                />
+              )}
+            </div>
+          </Container>
+        </Message>
+      )}
       {bannerIsVisible(
         token,
-        visible && dynamicBanner.enabled,
+        dynamicBannerVisible && dynamicBanner.enabled,
         dynamicBanner.visible_to_all,
       ) &&
         dynamicBanner.rancher_stacks_status && (
@@ -132,7 +136,7 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
                     color={bannerConfig.bannerCloseIconColor || 'black'}
                     className="close-button"
                     size="32px"
-                    onClick={hideBanner}
+                    onClick={hideDynamicBanner}
                   />
                 )}
               </div>
