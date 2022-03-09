@@ -26,7 +26,7 @@ const bannerIsVisible = (token, enabled, visible_to_all) => {
   return false;
 };
 
-const StagingBanner = ({ banner, location, token, dispatch }) => {
+const StagingBanner = ({ banner, token, dispatch }) => {
   const bannerConfig = {
     ...(config.settings.stagingBanner || {}),
     ...(banner.config || {}),
