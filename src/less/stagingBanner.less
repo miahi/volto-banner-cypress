@@ -1,9 +1,7 @@
 @import 'globals.less';
-
 @addon: 'theme';
 @addontype: 'stagingbanner';
 @addonelement: 'banner';
-
 .loadAddonVariables();
 
 .stagingBanner {
@@ -17,12 +15,16 @@
     }
   }
 
-  p,
-  li {
+  li,
+  p {
     color: @bannerTextColor;
     opacity: @bannerTextOpacity;
   }
   margin-top: 0 !important;
+
+  .close-button {
+    cursor: pointer;
+  }
 }
 
 .skiplinks-wrapper when (@overrideSkipLinks = true) {

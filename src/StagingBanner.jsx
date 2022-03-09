@@ -39,7 +39,12 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
     /* eslint-disable-next-line */
   }, []);
 
-  const [node, setNode] = React.useState('');
+  const [node, setNode] = React.useState(''),
+    [visible, setVisible] = React.useState(true),
+    hideBanner = React.useCallback(() => {
+      setVisible(false);
+    }, [setVisible]);
+
   React.useEffect(() => {
     setNode(document.querySelector(bannerConfig.parentNodeSelector));
   }, [bannerConfig.parentNodeSelector]);
@@ -49,39 +54,52 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
   return (
     <Portal node={node}>
       <BodyClass className="has-banner" />
-      {bannerIsVisible(
-        token,
-        staticBanner.enabled,
-        staticBanner.visible_to_all,
-      ) && (
-        <Message
-          className={cx('stagingBanner static-banner', staticBanner.type)}
-          icon
-        >
-          <Container>
-            <Message.Content>
-              <Message.Header>{staticBanner.title}</Message.Header>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: staticBanner.message,
-                }}
-              />
-            </Message.Content>
-            {bannerConfig.bannerIcon && (
-              <Icon
-                name={bannerConfig.bannerIcon}
-                color={bannerConfig.bannerIconColor || 'black'}
-                size="32px"
-              />
-            )}
-          </Container>
-        </Message>
-      )}
-      {bannerIsVisible(
-        token,
-        dynamicBanner.enabled,
-        dynamicBanner.visible_to_all,
-      ) &&
+      {visible &&
+        bannerIsVisible(
+          token,
+          staticBanner.enabled,
+          staticBanner.visible_to_all,
+        ) && (
+          <Message
+            className={cx('stagingBanner static-banner', staticBanner.type)}
+            icon
+          >
+            <Container>
+              <Message.Content>
+                <Message.Header>{staticBanner.title}</Message.Header>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: staticBanner.message,
+                  }}
+                />
+              </Message.Content>
+              <div>
+                {bannerConfig.bannerIcon && (
+                  <Icon
+                    name={bannerConfig.bannerIcon}
+                    color={bannerConfig.bannerIconColor || 'black'}
+                    size="32px"
+                  />
+                )}
+                {bannerConfig.bannerCloseIcon && (
+                  <Icon
+                    name={bannerConfig.bannerCloseIcon}
+                    color={bannerConfig.bannerCloseIconColor || 'black'}
+                    className="close-button"
+                    size="32px"
+                    onClick={hideBanner}
+                  />
+                )}
+              </div>
+            </Container>
+          </Message>
+        )}
+      {visible &&
+        bannerIsVisible(
+          token,
+          dynamicBanner.enabled,
+          dynamicBanner.visible_to_all,
+        ) &&
         dynamicBanner.rancher_stacks_status && (
           <Message
             className={cx(
@@ -102,13 +120,24 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
                   }}
                 />
               </Message.Content>
-              {bannerConfig.bannerIcon && (
-                <Icon
-                  name={bannerConfig.bannerIcon}
-                  color={bannerConfig.bannerIconColor || 'black'}
-                  size="32px"
-                />
-              )}
+              <div>
+                {bannerConfig.bannerIcon && (
+                  <Icon
+                    name={bannerConfig.bannerIcon}
+                    color={bannerConfig.bannerIconColor || 'black'}
+                    size="32px"
+                  />
+                )}
+                {bannerConfig.bannerCloseIcon && (
+                  <Icon
+                    name={bannerConfig.bannerCloseIcon}
+                    color={bannerConfig.bannerCloseIconColor || 'black'}
+                    className="close-button"
+                    size="32px"
+                    onClick={hideBanner}
+                  />
+                )}
+              </div>
             </Container>
           </Message>
         )}
