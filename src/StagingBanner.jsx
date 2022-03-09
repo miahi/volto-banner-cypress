@@ -54,12 +54,11 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
   return (
     <Portal node={node}>
       <BodyClass className="has-banner" />
-      {visible &&
-        bannerIsVisible(
-          token,
-          staticBanner.enabled,
-          staticBanner.visible_to_all,
-        ) && (
+      {bannerIsVisible(
+        token,
+        visible && staticBanner.enabled,
+        staticBanner.visible_to_all,
+      ) && (
           <Message
             className={cx('stagingBanner static-banner', staticBanner.type)}
             icon
@@ -94,12 +93,11 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
             </Container>
           </Message>
         )}
-      {visible &&
-        bannerIsVisible(
-          token,
-          dynamicBanner.enabled,
-          dynamicBanner.visible_to_all,
-        ) &&
+      {bannerIsVisible(
+        token,
+        visible && dynamicBanner.enabled,
+        dynamicBanner.visible_to_all,
+      ) &&
         dynamicBanner.rancher_stacks_status && (
           <Message
             className={cx(
