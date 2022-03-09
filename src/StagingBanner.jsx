@@ -26,7 +26,7 @@ const bannerIsVisible = (token, enabled, visible_to_all) => {
   return false;
 };
 
-const StagingBanner = ({ banner, location, token, dispatch }) => {
+const StagingBanner = ({ banner, token, dispatch }) => {
   const bannerConfig = {
     ...(config.settings.stagingBanner || {}),
     ...(banner.config || {}),
@@ -39,7 +39,16 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
     /* eslint-disable-next-line */
   }, []);
 
-  const [node, setNode] = React.useState('');
+  const [node, setNode] = React.useState(''),
+    [staticBannerVisible, setStaticBannerVisible] = React.useState(true),
+    [dynamicBannerVisible, setDynamicBannerVisible] = React.useState(true),
+    hideStaticBanner = React.useCallback(() => {
+      setStaticBannerVisible(false);
+    }, [setStaticBannerVisible]),
+    hideDynamicBanner = React.useCallback(() => {
+      setDynamicBannerVisible(false);
+    }, [setDynamicBannerVisible]);
+
   React.useEffect(() => {
     setNode(document.querySelector(bannerConfig.parentNodeSelector));
   }, [bannerConfig.parentNodeSelector]);
@@ -51,7 +60,7 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
       <BodyClass className="has-banner" />
       {bannerIsVisible(
         token,
-        staticBanner.enabled,
+        staticBannerVisible && staticBanner.enabled,
         staticBanner.visible_to_all,
       ) && (
         <Message
@@ -67,19 +76,30 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
                 }}
               />
             </Message.Content>
-            {bannerConfig.bannerIcon && (
-              <Icon
-                name={bannerConfig.bannerIcon}
-                color={bannerConfig.bannerIconColor || 'black'}
-                size="32px"
-              />
-            )}
+            <div>
+              {bannerConfig.bannerIcon && (
+                <Icon
+                  name={bannerConfig.bannerIcon}
+                  color={bannerConfig.bannerIconColor || 'black'}
+                  size="32px"
+                />
+              )}
+              {bannerConfig.bannerCloseIcon && (
+                <Icon
+                  name={bannerConfig.bannerCloseIcon}
+                  color={bannerConfig.bannerCloseIconColor || 'black'}
+                  className="close-button"
+                  size="32px"
+                  onClick={hideStaticBanner}
+                />
+              )}
+            </div>
           </Container>
         </Message>
       )}
       {bannerIsVisible(
         token,
-        dynamicBanner.enabled,
+        dynamicBannerVisible && dynamicBanner.enabled,
         dynamicBanner.visible_to_all,
       ) &&
         dynamicBanner.rancher_stacks_status && (
@@ -102,13 +122,24 @@ const StagingBanner = ({ banner, location, token, dispatch }) => {
                   }}
                 />
               </Message.Content>
-              {bannerConfig.bannerIcon && (
-                <Icon
-                  name={bannerConfig.bannerIcon}
-                  color={bannerConfig.bannerIconColor || 'black'}
-                  size="32px"
-                />
-              )}
+              <div>
+                {bannerConfig.bannerIcon && (
+                  <Icon
+                    name={bannerConfig.bannerIcon}
+                    color={bannerConfig.bannerIconColor || 'black'}
+                    size="32px"
+                  />
+                )}
+                {bannerConfig.bannerCloseIcon && (
+                  <Icon
+                    name={bannerConfig.bannerCloseIcon}
+                    color={bannerConfig.bannerCloseIconColor || 'black'}
+                    className="close-button"
+                    size="32px"
+                    onClick={hideDynamicBanner}
+                  />
+                )}
+              </div>
             </Container>
           </Message>
         )}

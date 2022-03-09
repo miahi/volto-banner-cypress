@@ -2,6 +2,7 @@ import StagingBanner from './StagingBanner';
 import * as addonReducers from './reducers';
 
 import infoSVG from '@plone/volto/icons/info.svg';
+import closeSVG from '@plone/volto/icons/circle-dismiss.svg';
 
 const applyConfig = (config) => {
   const appExtras = config.settings.appExtras || [];
@@ -10,6 +11,8 @@ const applyConfig = (config) => {
     parentNodeSelector: '.skiplinks-wrapper',
     bannerIcon: infoSVG,
     bannerIconColor: 'black',
+    bannerCloseIcon: closeSVG,
+    bannerCloseIconColor: 'black',
     ...(config.settings.stagingBanner || {}),
   };
 
