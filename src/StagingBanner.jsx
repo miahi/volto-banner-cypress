@@ -57,7 +57,6 @@ const StagingBanner = ({ banner, token, dispatch }) => {
 
   return (
     <Portal node={node}>
-      <BodyClass className="has-banner" />
       {bannerIsVisible(
         token,
         staticBannerVisible && staticBanner.enabled,
@@ -67,6 +66,7 @@ const StagingBanner = ({ banner, token, dispatch }) => {
           className={cx('stagingBanner static-banner', staticBanner.type)}
           icon
         >
+          <BodyClass className="has-banner" />
           <Container>
             <Message.Content>
               <Message.Header>{staticBanner.title}</Message.Header>
@@ -110,6 +110,7 @@ const StagingBanner = ({ banner, token, dispatch }) => {
             )}
             icon
           >
+            <BodyClass className="has-banner" />
             <Container>
               <Message.Content>
                 <Message.Header>{dynamicBanner.title}</Message.Header>
