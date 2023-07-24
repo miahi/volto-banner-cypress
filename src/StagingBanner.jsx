@@ -21,9 +21,7 @@ const types = {
 };
 
 const bannerIsVisible = (token, enabled, visible_to_all) => {
-  if (!enabled) return false;
-  if (token || visible_to_all) return true;
-  return false;
+  return enabled && (token || visible_to_all);
 };
 
 const StagingBanner = ({ banner, token, dispatch }) => {
