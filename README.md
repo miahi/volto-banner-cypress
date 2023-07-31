@@ -50,7 +50,20 @@ It is configurable through `/controlpanel/banner`.
 
 1. Go to http://localhost:3000
 
+### Try volto-banner with Docker
+
+      git clone https://github.com/eea/volto-banner.git
+      cd volto-banner
+      make
+      make start
+
+Go to http://localhost:3000
+
 ### Add volto-banner to your Volto project
+
+   ```Bash
+   docker compose up backend
+   ```
 
 1. Start Volto frontend
 
