@@ -33,23 +33,6 @@ It is configurable through `/controlpanel/banner`.
 
 ## Getting started
 
-### Start Plone backend with Docker
-
-1. Get the latest Docker images
-
-   ```
-   docker pull plone
-   docker pull plone/volto
-   ```
-
-1. Start Plone backend
-
-   ```
-   docker run -it --rm -p 8080:8080 -e SITE=Plone -e ADDONS="eea.banner" -e PROFILES="profile-eea.banner:default" plone
-   ```
-
-1. Go to http://localhost:3000
-
 ### Try volto-banner with Docker
 
       git clone https://github.com/eea/volto-banner.git
@@ -61,42 +44,44 @@ Go to http://localhost:3000
 
 ### Add volto-banner to your Volto project
 
+1. Make sure you have a [Plone backend](https://plone.org/download) up-and-running at http://localhost:8080/Plone
+
    ```Bash
    docker compose up backend
    ```
 
 1. Start Volto frontend
 
-- If you already have a volto project, just update `package.json`:
+* If you already have a volto project, just update `package.json`:
 
-  ```JSON
-  "addons": [
-      "@eeacms/volto-banner"
-  ],
+   ```JSON
+   "addons": [
+       "@eeacms/volto-banner"
+   ],
 
-  "dependencies": {
-      "@eeacms/volto-banner": "^2.0.0"
-  }
-  ```
+   "dependencies": {
+       "@eeacms/volto-banner": "*"
+   }
+   ```
 
-- If not, create one:
+* If not, create one:
 
-  ```
-  npm install -g yo @plone/generator-volto
-  yo @plone/volto my-volto-project --addon @eeacms/volto-banner
-  cd my-volto-project
-  ```
+   ```
+   npm install -g yo @plone/generator-volto
+   yo @plone/volto my-volto-project --canary --addon @eeacms/volto-banner
+   cd my-volto-project
+   ```
 
-1. Install new add-ons and start Volto:
+1. Install new add-ons and restart Volto:
 
    ```
    yarn
    yarn start
    ```
 
-2. Go to http://localhost:3000
-3. Login `admin:admin`
-4. Go to `Site Setup > Banner settings` and configure your banner
+1. Go to http://localhost:3000
+
+1. Happy editing!
 
 ## Release
 
