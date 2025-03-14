@@ -18,6 +18,12 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // e2e testing node events setup code
+	  on('before:browser:launch', (browser = {}, launchOptions) => {
+        launchOptions.args.push('--disable-gpu')
+
+        return launchOptions
+      });	  
+	  
       require('@cypress/code-coverage/task')(on, config);
       return config;
     },
